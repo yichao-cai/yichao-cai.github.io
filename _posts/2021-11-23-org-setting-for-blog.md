@@ -16,7 +16,7 @@ mode.
 
 I started to use org mode to document my work several years ago. Before
 that I am using markdown for this purpose. After know how powerful org
-mode is, I can\'t help but want to do everythin in org mode.
+mode is, I can\'t help but want to do everything in org mode.
 
 [Org mode](https://orgmode.org/) is not only a text mode. You can use it
 as your calendar, to-do list, and work report. You can insert code
