@@ -13,6 +13,8 @@ count the number of ways it can be decoded. For example, the message
 \'ka\', and \'ak\'. You can assume that the messages are decodable. For
 example, \'001\' is not allowed.
 
+<!--more-->
+
 # Solution
 
 ## Dynamic programming
