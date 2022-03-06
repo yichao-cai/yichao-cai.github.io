@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Arithmatic subarray and subsequence"
-date:   2022-03-05 16:00:00 +0800
+date:   2022-03-05 15:00:00 +0800
 tags: algorithm
 ---
 
@@ -40,16 +40,16 @@ we count the number of possible arithmatic subarray.
 ``` python
 def numOfArmSlices(nums):
     if len(nums) <= 1:
-  return 0
+        return 0
 
     res = 0
     for i in range(len(nums)-1):
-  itv = nums[i+1] - nums[i]
-  for j in range(i+2, len(nums)):
-      if nums[j] - nums[j-1] == itv:
-      res += 1
-      else:
-      break
+        itv = nums[i+1] - nums[i]
+        for j in range(i+2, len(nums)):
+            if nums[j] - nums[j-1] == itv:
+                res += 1
+            else:
+                break
     return(res)
 ```
 
@@ -77,21 +77,21 @@ way, we can use one loop to get our answer.
 ``` python
 def numOfArmSlices(nums):
     if len(nums) <= 1:
-  return 0
+        return 0
 
     itv = float('inf')          # Last seen interval. Initialized with infinite value.
-    res = 0                     # Our answer
+    ret = 0                     # Our answer
     cnt = 1                     # Counter to keep track of the length of longest arithmatic subarray.
     for i in range(1, len(nums)):
-  diff = nums[i] - nums[i-1]
-  if diff == itv:         # If next interval equal to the interval last seen.
-      res += cnt          # Add current counter to answer.
-      cnt += 1            # Increase counter by 1.
-  else:                   # If next interval does not equal to the interval last seen.
-      itv = diff          # Record new interval
-      cnt = 1             # Re-initialize counter.
+        diff = nums[i] - nums[i-1]
+        if diff == itv:         # If next interval equal to the interval last seen.
+            ret += cnt          # Add current counter to answer.
+            cnt += 1            # Increase counter by 1.
+        else:                   # If next interval does not equal to the interval last seen.
+            itv = diff          # Record new interval
+            cnt = 1             # Re-initialize counter.
 
-    return(res)
+    return(ret)
 ```
 
 Now let\'s look at the counter increment part. Why we want to increase
@@ -140,16 +140,16 @@ query location to see if they equal to a constant value.
 
 ``` python
 def armSubArray(nums, l, r):
-    res = [True] * len(l)
+    ret = [True] * len(l)
 
     for i in range(len(l)):
-  arr = sorted(nums[l[i]: r[i]+1])
-  itv = arr[1] - arr[0]
-  for j in range(2, len(arr)):
-      if arr[j] - arr[j-1] != itv:
-      res[i] = False
+        arr = sorted(nums[l[i]: r[i]+1])
+        itv = arr[1] - arr[0]
+        for j in range(2, len(arr)):
+            if arr[j] - arr[j-1] != itv:
+                ret[i] = False
 
-    return(res)
+    return(ret)
 ```
 
 # Question 3
@@ -211,9 +211,9 @@ def numArmSlice(nums):
     dp = [defaultdict(int) for _ in range(len(nums))]  # Initialize array to store intermediate state. Default value is 0.
     res = 0                                            # Answer
     for i in range(len(nums)):                         # Outer loop to loop through input nums
-  for j in range(i):                             # Inner loop to loop through every location before i
-      dp[i][nums[i] - nums[j]] += dp[j][nums[i] - nums[j]] + 1  # Update weak arithmatic subsequence number at i
-      res += dp[j][nums[i] - nums[j]]  # Count number of weak arithmatic subsequence at index j that can be extended with nums[i] at index i. These weak arithmatic subsequence is guaranteed to be arithmatic subsequence at index i.
+        for j in range(i):                             # Inner loop to loop through every location before i
+            dp[i][nums[i] - nums[j]] += dp[j][nums[i] - nums[j]] + 1  # Update weak arithmatic subsequence number at i
+            res += dp[j][nums[i] - nums[j]]  # Count number of weak arithmatic subsequence at index j that can be extended with nums[i] at index i. These weak arithmatic subsequence is guaranteed to be arithmatic subsequence at index i.
     return res
 ```
 

@@ -56,22 +56,22 @@ the messageDecoder function is to do the dynamic programming steps.
 def decoder(msg):
     # Edge cases of length 1 or 2
     if(msg[0] == "0"):
-  return 0
+        return 0
     elif(len(msg) == 1):
-  return 1
+        return 1
     elif(len(msg) == 2):
-  if(msg[1] == "0"):
-      return 1
-  elif(int(msg) > 26):
-      return 1
-  else:
-      return 2
+        if(msg[1] == "0"):
+            return 1
+        elif(int(msg) > 26):
+            return 1
+        else:
+            return 2
 
 def messageDecoder(msg):
     if(len(msg) <=2):
-  return decoder(msg)
+        return decoder(msg)
     else:
-  return (messageDecoder(msg[:-2]) * decoder(msg[-2:])) + (messageDecoder(msg[:-1]) * decoder(msg[-1:]))
+        return (messageDecoder(msg[:-2]) * decoder(msg[-2:])) + (messageDecoder(msg[:-1]) * decoder(msg[-1:]))
 
 messageDecoder("101")  # Returns 1
 messageDecoder("111")  # Returns 4
@@ -102,34 +102,34 @@ import string
 
 # Dictionary to map string to letter.
 letterMap = dict(zip([str(i) for i in range(1,27)],
-           [i for i in string.ascii_lowercase]))
+                     [i for i in string.ascii_lowercase]))
 
 def decoder2(msg):
     # Edge cases of length 1 or 2
     # Return decoded letter instead.
     if(msg[0] == "0"):
-  return []
+        return []
     elif(len(msg) == 1):
-  return [letterMap[msg]]
+        return [letterMap[msg]]
     elif(len(msg) == 2):
-  if(msg[1] == "0"):
-      return [letterMap[msg]]
-  elif(int(msg) > 26):
-      return ["".join([letterMap[i] for i in msg])]
-  else:
-      return ["".join([letterMap[i] for i in msg]), letterMap[msg]]
+        if(msg[1] == "0"):
+            return [letterMap[msg]]
+        elif(int(msg) > 26):
+            return ["".join([letterMap[i] for i in msg])]
+        else:
+            return ["".join([letterMap[i] for i in msg]), letterMap[msg]]
 
 
 def messageDecoder2Recur(msg):
     if(len(msg) <=2):
-  return decoder2(msg)
+        return decoder2(msg)
     else:
-  # Concatenate returned letters and append in the returned list.
-  ret = []
-  ret.append([''.join(i) for i in list(itertools.product(messageDecoder2Recur(msg[:-2]), decoder2(msg[-2:])))])
-  ret.append([''.join(i) for i in list(itertools.product(messageDecoder2Recur(msg[:-1]), decoder2(msg[-1:])))])
-  # Return unique decoded letters.
-  return list(set(list(itertools.chain(*ret))))
+        # Concatenate returned letters and append in the returned list.
+        ret = []
+        ret.append([''.join(i) for i in list(itertools.product(messageDecoder2Recur(msg[:-2]), decoder2(msg[-2:])))])
+        ret.append([''.join(i) for i in list(itertools.product(messageDecoder2Recur(msg[:-1]), decoder2(msg[-1:])))])
+        # Return unique decoded letters.
+        return list(set(list(itertools.chain(*ret))))
 
 def messageDecoder2(msg):
     # Helper function to get the number of uniquely decoded letters.
@@ -140,6 +140,7 @@ messageDecoder2("111")  # Returns 3
 messageDecoder2("999")  # Returns 1
 messageDecoder2("1111")  # Returns 5
 messageDecoder2("1234")  # Returns 3
+messageDecoder2("27")  # Returns 1
 ```
 
 This way we creat a nested string list of uncertain layers. Thus the
@@ -158,31 +159,31 @@ def messageDecoder3(msg):
 
     # Move pointer forward.
     for i in range(len(msg)-1, -1, -1):
-  # Process the last digit.
-  if(i == len(msg) - 1):
-      if(int(msg[i]) == 0):
-      decodeNum[i] = 0
-      else:
-      decodeNum[i] = 1
-  else:
-      if(int(msg[i]) == 0):
-      decodeNum[i] = 0
-      elif(int(msg[i]) > 3 or int(msg[i:i+2]) > 26):
-      decodeNum[i] = decodeNum[i+1]
-      elif(int(msg[i]) in [1, 2] and decodeNum[i+1] == 0):
-      try:            
-          decodeNum[i] = decodeNum[i+2]
-      except IndexError:
-          # If at the second last digit, decodeNum[i+2] would lead to index out of range.
-          # In such cases, the only possibility is 1 because the last two digits is '10' or '20'.
-          decodeNum[i] = 1
-      else:
-      try:
-          decodeNum[i] = decodeNum[i+1] + decodeNum[i+2]
-      except IndexError:
-          # If at the second last digit, decodeNum[i+2] would lead to index out of range.
-          # In such cases, there is one more possible way to decode the digits. i.e. for '11', we have 2 ways.
-          decodeNum[i] = decodeNum[i+1] + 1
+        # Process the last digit.
+        if(i == len(msg) -1):
+            if(int(msg[i]) == 0):
+                decodeNum[i] = 0
+            else:
+                decodeNum[i] = 1
+        else:
+            if(int(msg[i]) == 0):
+                decodeNum[i] = 0
+            elif(int(msg[i]) > 3 or int(msg[i:i+2]) > 26):
+                decodeNum[i] = decodeNum[i+1]
+            elif(int(msg[i]) in [1, 2] and decodeNum[i+1] == 0):
+                try:            
+                    decodeNum[i] = decodeNum[i+2]
+                except IndexError:
+                    # If at the second last digit, decodeNum[i+2] would lead to index out of range.
+                    # In such cases, the only possibility is 1 because the last two digits is '10' or '20'.
+                    decodeNum[i] = 1
+            else:
+                try:
+                    decodeNum[i] = decodeNum[i+1] + decodeNum[i+2]
+                except IndexError:
+                    # If at the second last digit, decodeNum[i+2] would lead to index out of range.
+                    # In such cases, there is one more possible way to decode the digits. i.e. for '11', we have 2 ways.
+                    decodeNum[i] = decodeNum[i+1] + 1
 
     return(decodeNum[0])
 ```
