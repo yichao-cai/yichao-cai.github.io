@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Letter decoder"
-date:   2022-02-21 15:00:00 +0800
+date:   2022-02-21 16:00:00 +0800
 tags: algorithm
 ---
 

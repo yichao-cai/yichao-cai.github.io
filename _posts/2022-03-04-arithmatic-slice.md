@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Arithmatic subarray and subsequence"
-date:   2022-03-05 15:00:00 +0800
+date:   2022-03-05 16:00:00 +0800
 tags: algorithm
 ---
 
