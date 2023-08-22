@@ -1,3 +1,9 @@
+---
+title: "About"
+permalink: "/about/"
+layout: page
+---
+
 ## About this blog
 
 This is my personal blog. I intend to document some of my own
