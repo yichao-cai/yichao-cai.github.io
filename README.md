@@ -30,6 +30,7 @@ You can know more about me at [LinkedIn](https://www.linkedin.com/in/yichao-cai-
 ## Working experience
 
 -   Senior Bioinformatics Scientist, Illumina AI Lab, Singapore.
+	
 	Develop and apply deep-learning methods on RNA-seq data to better
 	understand RNA biology.
 	
