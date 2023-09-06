@@ -26,9 +26,12 @@ You can know more about me at [LinkedIn](https://www.linkedin.com/in/yichao-cai-
 -  Python
 -  R (Bioconductor/Tidyverse/ggplot)
 -  PyTorch
--  pandas
+-  Pandas/Numpy
 -  Linux/Bash
+-  Git
 -  Snakemake/nextflow/airflow
+-  Docker/Singularity
+-  HPC/SGE
 -  C++
 -  SQL
 
